@@ -21,12 +21,12 @@ namespace MediatorTreinaWeb.Application.Commands
 
         public async Task<string> Handle(AlteraPessoaCommand request, CancellationToken cancellationToken)
         {
-            var pessoa = new Pessoa { Id = request.Id, Nome = request.Nome, Idade = request.Id, Sexo = request.Sexo };
+            var pessoa = new Pessoa { Id = request.Id, Nome = request.Nome, Idade = request.Idade, Sexo = request.Sexo };
 
             try
             {
                 await _repository.Edit(pessoa);
-                await _mediator.Publish(new PessoaAlteradaNotification { Id = pessoa.Id, Nome = pessoa.Nome, Idade = pessoa.Id, Sexo = pessoa.Sexo, IsEfetivado = true });
+                await _mediator.Publish(new PessoaAlteradaNotification { Id = pessoa.Id, Nome = pessoa.Nome, Idade = pessoa.Idade, Sexo = pessoa.Sexo, IsEfetivado = true });
 
                 return await Task.FromResult("Pessoa alterada com sucesso");
             }

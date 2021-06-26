@@ -26,7 +26,7 @@ namespace MediatorTreinaWeb.Controllers
             return Ok(await _repository.GetAll());
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             return Ok(await _repository.Get(id));
@@ -40,7 +40,15 @@ namespace MediatorTreinaWeb.Controllers
             return Ok(response);
         }
 
-        [HttpDelete]
+        [HttpPut]
+        public async Task<IActionResult> Put(AlteraPessoaCommand command)
+        {
+            var response = await _mediator.Send(command);
+
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var obj = new ExcluiPessoaCommand { Id = id };

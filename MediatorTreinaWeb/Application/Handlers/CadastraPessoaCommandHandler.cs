@@ -26,7 +26,7 @@ namespace MediatorTreinaWeb.Application.Commands
             try
             {
                 await _repository.Add(pessoa);
-                await _mediator.Publish(new PessoaCriadaNotification { Id = pessoa.Id, Nome = pessoa.Nome, Idade = pessoa.Id, Sexo = pessoa.Sexo });
+                await _mediator.Publish(new PessoaCriadaNotification { Id = pessoa.Id, Nome = pessoa.Nome, Idade = pessoa.Idade, Sexo = pessoa.Sexo });
 
                 return await Task.FromResult("Pessoa criada com sucesso");
             }

@@ -8,6 +8,7 @@ namespace MediatorTreinaWeb.Repositories
     public class PessoaRepository : IRepository<Pessoa>
     {
         private static Dictionary<int, Pessoa> pessoas = new Dictionary<int, Pessoa>();
+        private static int id;
 
         public async Task<IEnumerable<Pessoa>> GetAll()
         {
@@ -21,6 +22,7 @@ namespace MediatorTreinaWeb.Repositories
 
         public async Task Add(Pessoa pessoa)
         {
+            pessoa.Id = ++id;
             await Task.Run(() => pessoas.Add(pessoa.Id, pessoa));
         }
 
